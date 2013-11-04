@@ -1,0 +1,9 @@
+{application,vimregex,
+             [{description,"vimregex"},
+              {vsn,"1"},
+              {modules,[sample_dtl,vimregex,vimregex_app,vimregex_resource,
+                        vimregex_sup]},
+              {registered,[]},
+              {applications,[kernel,stdlib,inets,crypto,mochiweb,webmachine]},
+              {mod,{vimregex_app,[]}},
+              {env,[]}]}.
