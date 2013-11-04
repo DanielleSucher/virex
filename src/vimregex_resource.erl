@@ -12,7 +12,7 @@ to_html(ReqData, State) ->
     Text = wrq:get_qs_value("text", "", ReqData),
     Pattern = wrq:get_qs_value("pattern", "", ReqData),
     Highlighted = highlight(Text, Pattern),
-    {ok, Content} = sample_dtl:render([{highlighted, Highlighted}]),
+    {ok, Content} = highlighted_dtl:render([{highlighted, Highlighted}]),
     {Content, ReqData, State}.
 
 
