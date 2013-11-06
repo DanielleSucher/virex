@@ -2,3 +2,40 @@
   background-color:yellow;
 }
 
+.slash {
+  text-align: center;
+}
+
+.vertical-spacer {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+#match_result {
+  height: 140px;
+  width: 417px;
+}
+
+#match_groups, #wat {
+  height: 94px;
+  width: 417px;
+  vertical-align: bottom;
+}
+
+input, textarea, .match, #wat {
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+}
+
+h1 {
+  text-align: center;
+}
+
+.pull_left {
+  margin-left: 0px !important;
+}
+
+.push_right {
+  margin-left: 20px !important;
+}

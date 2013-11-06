@@ -3,9 +3,33 @@
   <head>
     <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/vimregex.css" />
+    <link rel="stylesheet" type="text/css" href="css/960.css" />
   </head>
 
   <body>
-    Hello!
+    <div id="main_container" class="container_12">
+      <div class="grid_12 pull_left">
+        <h1>a Vim Regular Expressions playground</h1>
+        <span class="grid_1 slash">/</span>
+        <input type="text" name="regex" placeholder="Your regular expression" class="grid_7">
+        <span class="grid_1 slash">/</span>
+        <input type="text" name="flags" placeholder="flags (optional)" class="grid_2">
+      </div>
+      <div class="clear vertical-spacer"><br /></div>
+      <div class="grid_6 push_right">
+        <label for="test_string">Your test string:</label><br />
+        <textarea id="test_string" name="test_string" placeholder="Your test string" rows="10" cols="60"></textarea>
+        <br /><br />
+        <label for="wat">WAT:</label><br />
+        <div id="wat"></div>
+      </div>
+      <div class="grid_6 pull_left">
+        <label for="match_result">Match result:</label><br />
+        <div id="match_result" class="match"></div>
+        <br />
+        <label for="match_groups">Match groups:</label><br />
+        <div id="match_groups" class="match"></div>
+      </div>
+    </div>
   </body>
 </html>
