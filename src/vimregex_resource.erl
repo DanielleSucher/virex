@@ -30,6 +30,10 @@ mktemp() ->
 
 
 vim_command(Filename, Pattern) ->
-  Substitute = " -c \"%s/" ++ Pattern ++ "/<span class='highlight'>\\0<\\/span>/g\"",
+  SafePattern = escape_quotes_for_vim(Pattern),
+  Substitute = " -c \"%s/" ++ SafePattern ++ "/<span class='highlight'>\\0<\\/span>/g\"",
   "vim -X " ++ Filename ++ Substitute ++ " -c \"x\"".
 
+
+escape_quotes_for_vim(Pattern) ->
+  re:replace(Pattern, "\"", [92,92,92,34], [{return, list}]).
