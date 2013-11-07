@@ -39,3 +39,7 @@ h1 {
 .push_right {
   margin-left: 20px !important;
 }
+
+.push_right_double {
+  margin-left: 40px !important;
+}
