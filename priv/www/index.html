@@ -12,15 +12,15 @@
       <div class="grid_12 pull_left">
         <h1>a Vim Regular Expressions playground</h1>
         <span class="grid_1 slash">/</span>
-        <input type="text" name="regex" placeholder="Your regular expression" class="grid_7" data-behavior="submit-regex-query">
+        <input type="text" id="regex" placeholder="Your regular expression" class="grid_7" data-behavior="submit-regex-query">
         <span class="grid_1 slash">/</span>
-        <input type="text" name="flags" placeholder="flags (optional)" class="grid_2" data-behavior="submit-regex-query">
+        <input type="text" id="flags" placeholder="flags (optional)" class="grid_2" data-behavior="submit-regex-query">
         <button data-behavior="submit-regex-query"></button>
       </div>
       <div class="clear vertical-spacer"><br /></div>
       <div class="grid_6 push_right">
         <label for="test_string">Your test string:</label><br />
-        <textarea id="test_string" name="test_string" placeholder="Your test string" rows="10" cols="60" data-behavior="submit-regex-query"></textarea>
+        <textarea id="test_string" placeholder="Your test string" rows="10" cols="60" data-behavior="submit-regex-query"></textarea>
         <br /><br />
         <label for="wat">WAT:</label><br />
         <div id="wat"></div>
