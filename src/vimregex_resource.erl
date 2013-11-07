@@ -6,14 +6,17 @@
 
 -include_lib("webmachine/include/webmachine.hrl").
 
+-define(SUBSTITUTION, "/<span class='highlight'>\\0<\\/span><br><br>" ++ 
+  "Match groups:<br><br>\\&#92;1: \1<br>\\&#92;2: \2<br>\\&#92;3: \3<br>" ++
+  "\\&#92;4: \4<br>\\&#92;5: \5<br>\\&#92;6: \6<br>\\&#92;7: \7/g\"").
+
 init([]) -> {ok, undefined}.
 
 to_html(ReqData, State) ->
     Text = wrq:get_qs_value("text", "", ReqData),
     Pattern = wrq:get_qs_value("pattern", "", ReqData),
     Highlighted = highlight(Text, Pattern),
-    {ok, Content} = highlighted_dtl:render([{highlighted, Highlighted}]),
-    {Content, ReqData, State}.
+    {Highlighted, ReqData, State}.
 
 
 highlight(Text, Pattern) ->
@@ -29,8 +32,7 @@ mktemp() ->
 
 
 vim_command(Filename, Pattern) ->
-  SafePattern = escape_quotes_for_vim(Pattern),
-  Substitute = " -c \"%s/" ++ SafePattern ++ "/<span class='highlight'>\\0<\\/span>/g\"",
+  Substitute = " -c \"%s/" ++ escape_quotes_for_vim(Pattern) ++ ?SUBSTITUTION,
   "vim -X " ++ Filename ++ Substitute ++ " -c \"x\"".
 
 
