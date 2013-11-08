@@ -6,7 +6,7 @@ $(document).ready(function() {
     regex = $('#regex').val();
 
     if (regex && test_string) {
-      $.ajax("/highlight?text="+test_string+"&pattern="+regex)
+      $.ajax("/regex?text="+test_string+"&pattern="+regex)
         .done(function(data) {
           $('#match_result').html(data);
         })
