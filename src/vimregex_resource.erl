@@ -19,10 +19,9 @@ to_html(ReqData, State) ->
 highlight(Text, Pattern) ->
   Filename = mktemp(),
   file:write_file(Filename, Text),
-  os:cmd(vim_command(Filename, Pattern)),
-  {ok, Highlighted} = file:read_file(Filename),
-  file:delete(Filename),
-  Highlighted.
+  VimCommand = vim_command(Filename, Pattern),
+  Port = open_port({spawn, VimCommand}, [exit_status, stderr_to_stdout]),
+  loop_until_vim_is_done(Filename, Port).
 
 
 mktemp() ->
@@ -37,3 +36,16 @@ vim_command(Filename, Pattern) ->
 
 escape_quotes_for_vim(Pattern) ->
   re:replace(Pattern, "\"", [92,92,92,34], [{return, list}]).
+
+
+loop_until_vim_is_done(Filename, Port) ->
+  receive
+    {Port, {data, _}} ->
+      loop_until_vim_is_done(Filename, Port);
+    {Port, {exit_status, 0}} ->
+      {ok, Highlighted} = file:read_file(Filename),
+      file:delete(Filename),
+      Highlighted;
+    _ ->
+      error
+  end.
