@@ -1,4 +1,4 @@
-#a Vim Regular Expressions playground
+#Virex: a Vim Regular Expressions playground
 
 Inspired by [Rubular](http://rubular.com/), this is a single-page app that offers a playground to experiment with Vim's regular expressions on the web.
   
