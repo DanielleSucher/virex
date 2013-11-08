@@ -1,5 +1,5 @@
 ERL ?= erl
-APP := vimregex
+APP := virex
 
 .PHONY: deps
 

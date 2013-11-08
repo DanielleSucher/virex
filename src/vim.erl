@@ -36,5 +36,5 @@ loop_until_vim_is_done(Filename, Port) ->
 
 
 mktemp() ->
-  string:strip(os:cmd("mktemp -t vimregextmp.XXXXXXX"), both, $\n).
+  string:strip(os:cmd("mktemp -t virextmp.XXXXXXX"), both, $\n).
 

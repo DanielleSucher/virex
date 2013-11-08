@@ -1,9 +1,9 @@
 %% @author author <author@example.com>
 %% @copyright YYYY author.
 
-%% @doc Supervisor for the vimregex application.
+%% @doc Supervisor for the virex application.
 
--module(vimregex_sup).
+-module(virex_sup).
 -author('author <author@example.com>').
 
 -behaviour(supervisor).

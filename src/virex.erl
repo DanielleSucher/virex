@@ -1,9 +1,9 @@
 %% @author author <author@example.com>
 %% @copyright YYYY author.
 
-%% @doc vimregex startup code
+%% @doc virex startup code
 
--module(vimregex).
+-module(virex).
 -author('author <author@example.com>').
 -export([start/0, start_link/0, stop/0]).
 
@@ -24,10 +24,10 @@ start_link() ->
     application:set_env(webmachine, webmachine_logger_module, 
                         webmachine_logger),
     ensure_started(webmachine),
-    vimregex_sup:start_link().
+    virex_sup:start_link().
 
 %% @spec start() -> ok
-%% @doc Start the vimregex server.
+%% @doc Start the virex server.
 start() ->
     ensure_started(inets),
     ensure_started(crypto),
@@ -35,12 +35,12 @@ start() ->
     application:set_env(webmachine, webmachine_logger_module, 
                         webmachine_logger),
     ensure_started(webmachine),
-    application:start(vimregex).
+    application:start(virex).
 
 %% @spec stop() -> ok
-%% @doc Stop the vimregex server.
+%% @doc Stop the virex server.
 stop() ->
-    Res = application:stop(vimregex),
+    Res = application:stop(virex),
     application:stop(webmachine),
     application:stop(mochiweb),
     application:stop(crypto),

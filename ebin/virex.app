@@ -1,0 +1,9 @@
+{application,virex,
+             [{description,"virex"},
+              {vsn,"1"},
+              {modules,[regex_resource,results_dtl,static_resource,vim,virex,
+                        virex_app,virex_sup]},
+              {registered,[]},
+              {applications,[kernel,stdlib,inets,crypto,mochiweb,webmachine]},
+              {mod,{virex_app,[]}},
+              {env,[]}]}.

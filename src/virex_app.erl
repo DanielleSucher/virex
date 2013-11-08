@@ -1,9 +1,9 @@
 %% @author author <author@example.com>
 %% @copyright YYYY author.
 
-%% @doc Callbacks for the vimregex application.
+%% @doc Callbacks for the virex application.
 
--module(vimregex_app).
+-module(virex_app).
 -author('author <author@example.com>').
 
 -behaviour(application).
@@ -11,11 +11,11 @@
 
 
 %% @spec start(_Type, _StartArgs) -> ServerRet
-%% @doc application start callback for vimregex.
+%% @doc application start callback for virex.
 start(_Type, _StartArgs) ->
-    vimregex_sup:start_link().
+    virex_sup:start_link().
 
 %% @spec stop(_State) -> ServerRet
-%% @doc application stop callback for vimregex.
+%% @doc application stop callback for virex.
 stop(_State) ->
     ok.
