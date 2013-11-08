@@ -12,12 +12,17 @@
 }
 
 #match_result {
-  height: 273px;
+  height: 140px;
   width: 417px;
-  padding-left: 5px;
 }
 
-input, textarea, #match_result {
+#match_groups, #wat {
+  height: 94px;
+  width: 417px;
+  vertical-align: bottom;
+}
+
+input, textarea, .match, #wat {
   border-style: solid;
   border-width: 1px;
   border-color: black;
