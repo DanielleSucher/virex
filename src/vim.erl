@@ -5,7 +5,7 @@
 -export([handle_regex/2]).
 
 -define(SUBSTITUTION, "/<span class='highlight'>\\0<\\/span>" ++
-  "VRMG<br><br>\\&#92;1: \1<br>\\&#92;2: \2<br>\\&#92;3: \3VRMG/g\"").
+  "VRMG<br>\\&#92;1: \\1<br>\\&#92;2: \\2<br>\\&#92;3: \\3VRMG/g\"").
 
 
 handle_regex(Text, Pattern) ->
