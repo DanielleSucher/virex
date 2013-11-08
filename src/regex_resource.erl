@@ -30,4 +30,4 @@ match(Text, Pattern) ->
 split_highlighted_and_groups(Tokens) ->
   IsMatchGroup = fun([A,B|_]) -> [A] =:= "<" andalso B =:= $b; (_) -> false end,
   {Groups, Match} = lists:partition(IsMatchGroup, Tokens),
-  {string:join(Match, ""), string:join(Groups, "<br><br>")}.
+  {string:join(Match, ""), string:join(Groups, "<br>")}.

@@ -8,11 +8,8 @@ $(document).ready(function() {
     if (regex && test_string) {
       $.ajax("/regex?text="+test_string+"&pattern="+regex)
         .done(function(data) {
-          $('#match_result').html(data);
-        })
-        .fail(function() {
-          alert( "error" );
-        })
+          $('#results').html(data);
+        });
     }
   });
 });
