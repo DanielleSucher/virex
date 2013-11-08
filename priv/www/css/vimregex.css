@@ -2,10 +2,6 @@
   background-color:yellow;
 }
 
-.slash {
-  text-align: center;
-}
-
 .vertical-spacer {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -16,23 +12,28 @@
   width: 417px;
 }
 
+#tips {
+  height: 300px;
+  width: 540px;
+}
+
 #match_groups {
   height: 94px;
   width: 417px;
   vertical-align: bottom;
 }
 
-#match_result, #match_groups {
+.match {
   padding-left: 5px;
 }
 
-input, textarea, .match {
+input, textarea, .match, #tips {
   border-style: solid;
   border-width: 1px;
   border-color: black;
 }
 
-h1 {
+h1, h3, .slash, #footer {
   text-align: center;
 }
 
