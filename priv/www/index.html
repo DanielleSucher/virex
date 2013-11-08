@@ -12,13 +12,13 @@
       <div class="grid_12 pull_left">
         <h1>a Vim Regular Expressions playground</h1>
         <span class="grid_1 prefix_1 slash push_right_double">/</span>
-        <input type="text" id="regex" placeholder="Your regular expression" class="grid_7" data-behavior="submit-regex-query">
+        <input type="text" id="regex" placeholder="Your regular expression" class="grid_7" data-behavior="submit-regex-query" maxlength="80">
         <span class="grid_1 suffix_1 slash">/</span>
       </div>
       <div class="clear vertical-spacer"><br /></div>
       <div class="grid_6 push_right">
         <label for="test_string">Your test string:</label><br />
-        <textarea id="test_string" placeholder="Your test string" rows="10" cols="60" data-behavior="submit-regex-query"></textarea>
+        <textarea id="test_string" placeholder="Your test string" rows="10" cols="60" data-behavior="submit-regex-query" maxlength="500"></textarea>
         <br /><br />
         <div class="prefix_1 push_right">
           <button id="update_regex">Update match results</button>
