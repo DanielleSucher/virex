@@ -11,15 +11,39 @@
 handle_regex(Text, Pattern) ->
   Filename = mktemp(),
   file:write_file(Filename, Text),
-  VimCommand = substitution_command(Filename, Pattern),
-  Port = open_port({spawn, VimCommand}, [exit_status, stderr_to_stdout]),
-  loop_until_vim_is_done(Filename, Port).
+  case substitution_command(Filename, Pattern) of
+    rejected ->
+      <<"Your pattern has been rejected. Please email me with your use case.">>;
+    {ok, VimCommand} ->
+      Port = open_port({spawn, VimCommand}, [exit_status, stderr_to_stdout]),
+      loop_until_vim_is_done(Filename, Port)
+  end.
 
 
 substitution_command(Filename, Pattern) ->
-  SafePattern = re:replace(Pattern, "\"", [92,92,92,34], [{return, list}]),
-  Substitute = " -c \"%s/" ++ SafePattern ++ ?SUBSTITUTION,
-  "vim -X " ++ Filename ++ Substitute ++ " -c \"x\"".
+  case secure_pattern(Filename, Pattern) of
+    rejected ->
+      rejected;
+    SafePattern ->
+      Substitute = " -c \"%s/" ++ SafePattern ++ ?SUBSTITUTION,
+      {ok, "vim -X " ++ Filename ++ Substitute ++ " -c \"x\""}
+  end.
+
+
+secure_pattern(Filename, Pattern) when erlang:length(Pattern) > 80 ->
+  reject_pattern(Filename);
+secure_pattern(Filename, Pattern) ->
+  case re:run(Pattern, "\{[0-9]{3,}|[0-9]{3,}\\\\*\}") of
+    nomatch ->
+      re:replace(Pattern, "\"", [92,92,92,34], [global, {return, list}]);
+    {match, _} ->
+      reject_pattern(Filename)
+  end.
+
+
+reject_pattern(Filename) ->
+  file:delete(Filename),
+  rejected.
 
 
 loop_until_vim_is_done(Filename, Port) ->
@@ -37,4 +61,3 @@ loop_until_vim_is_done(Filename, Port) ->
 
 mktemp() ->
   string:strip(os:cmd("mktemp -t virextmp.XXXXXXX"), both, $\n).
-
