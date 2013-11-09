@@ -1,3 +1,69 @@
+body {
+  min-width: 960px;
+}
+
+#main_container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+}
+
+.grid_6,
+.grid_9,
+.grid_12 {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+}
+
+.grid_6 {
+  width: 460px;
+  margin-left: 20px;
+}
+
+.grid_9 {
+  width: 700px;
+  margin-left: 20px;
+}
+
+.grid_12 {
+  width: 940px;
+  margin-left: 0px;
+}
+
+.prefix_1 {
+  padding-left: 80px;
+}
+
+.prefix_2 {
+  padding-left: 160px;
+}
+
+.pull_left {
+  margin-left: 0px !important;
+}
+
+#update_button_div {
+  margin-left: 20px;
+}
+
+.pattern_offset {
+  margin-left: 100px !important;
+}
+
+#regex,
+.slash {
+  margin-left: 10px;
+}
+
+#regex {
+  width: 540px;
+}
+
+.slash {
+  width: 60px;
+}
+
 .highlight {
   background-color:yellow;
 }
@@ -5,6 +71,10 @@
 .vertical-spacer {
   margin-top: 30px;
   margin-bottom: 30px;
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
 }
 
 #match_result {
@@ -35,18 +105,6 @@ input, textarea, .match, #tips {
 
 h1, h3, .slash, #footer {
   text-align: center;
-}
-
-.pull_left {
-  margin-left: 0px !important;
-}
-
-.push_right {
-  margin-left: 20px !important;
-}
-
-.push_right_double {
-  margin-left: 40px !important;
 }
 
 button {

@@ -4,23 +4,22 @@
     <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" src="js/virex.js"></script>
     <link rel="stylesheet" type="text/css" href="css/virex.css" />
-    <link rel="stylesheet" type="text/css" href="css/960_12_col.css" />
   </head>
 
   <body>
-    <div id="main_container" class="container_12">
-      <div class="grid_12 pull_left">
+    <div id="main_container">
+      <div class="grid_12">
         <h1>a Vim Regular Expressions playground</h1>
-        <span class="grid_1 prefix_1 slash push_right_double">/</span>
-        <input type="text" id="regex" placeholder="Your regular expression" class="grid_7" data-behavior="submit-regex-query" maxlength="80">
-        <span class="grid_1 suffix_1 slash">/</span>
+        <span class="slash prefix_1 pattern_offset">/</span>
+        <input type="text" id="regex" placeholder="Your regular expression" data-behavior="submit-regex-query" maxlength="80">
+        <span class="slash">/</span>
       </div>
       <div class="clear vertical-spacer"><br /></div>
-      <div class="grid_6 push_right">
+      <div class="grid_6">
         <label for="test_string">Your test string:</label><br />
         <textarea id="test_string" placeholder="Your test string" rows="10" cols="60" data-behavior="submit-regex-query" maxlength="500"></textarea>
         <br /><br />
-        <div class="prefix_1 push_right">
+        <div id="update_button_div" class="prefix_1">
           <button id="update_regex">Update match results</button>
         </div>
       </div>
@@ -31,20 +30,21 @@
         <label for="match_groups">Match groups:</label><br />
         <div id="match_groups" class="match"></div>
       </div>
-      <div id="footer" class="grid_12 pull_left">
+      <div id="footer" class="grid_12">
         <br />
-        <div class="grid_9 prefix_1 push_right">
+        <div class="grid_9 prefix_1">
           <h3>Vim Regex Quick Reference</h3>
         </div>
-        <div class="grid_6 prefix_2 push_right">
+        <div class="grid_6 prefix_2">
           <div id="tips"></div>
         </div>
         <div class="clear vertical-spacer"><br /></div>
-        <div class="grid_9 prefix_1 push_right">
+        <div class="grid_9 prefix_1">
           For detailed documentation on vim's regex, check out <a href="http://vimregex.com/">vimregex.com</a>, the <a href="http://vimdoc.sourceforge.net/htmldoc/pattern.html">vim docs</a>, and the <a href="http://vim.wikia.com/wiki/Special:Search?search=regular+expressions&fulltext=Search&ns0=1&ns14=1">vim tips wiki</a>.
           <br /><br />
           Made by <a href="http://www.daniellesucher.com/">Danielle Sucher</a> (<a href="https://twitter.com/daniellesucher">@DanielleSucher</a>), inspired by <a href="http://rubular.com/">Rubular</a>. Source code <a href="https://github.com/DanielleSucher/virex">available here</a>.
         </div>
+        <div class="clear vertical-spacer"><br /></div>
       </div>
     </div>
   </body>
