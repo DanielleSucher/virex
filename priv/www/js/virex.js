@@ -2,7 +2,7 @@ $(document).ready(function() {
   $('#update_regex').click(function(e) {
     e.preventDefault;
 
-    test_string = $('#test_string').val();
+    test_string = $('#test_string').val().replace(/\r?\n/g, "%0A");
     regex = $('#regex').val();
 
     if (regex && test_string) {
