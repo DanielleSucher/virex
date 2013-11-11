@@ -1,11 +1,11 @@
 <label for="match_result">Match result:</label><br />
 <div id="match_result" class="match">
-  {{ match }}
+<pre>{{ match }}</pre>
 </div>
 
 <br />
 
 <label for="match_groups">Match groups:</label><br />
 <div id="match_groups" class="match">
-  {{ groups }}
+<pre>{{ groups }}</pre>
 </div>
