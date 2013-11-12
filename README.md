@@ -28,3 +28,7 @@ Use this config if you want to use NGINX to serve the static content, acting as 
             proxy_pass      http://127.0.0.1:8191;
         }   
     }
+
+**Running on the server**
+
+`VIREX_START_OPTIONS="-detached" ./start.sh`
