@@ -13,3 +13,18 @@ Make sure you have vim installed and then run:
 0. `make`
 
 1. `./start.sh`
+
+**NGINX**
+
+Use this config if you want to use NGINX to serve the static content, acting as a reverse proxy to /regex API.
+
+    server {
+        listen       80; 
+        server_name  www.server_name.com;
+        access_log   /var/log/nginx/server_name.com.access.log  main;
+        root    /YOUR_PATH_OF_INSTALLATION/virex/priv/www/;
+ 
+        location /regex { 
+            proxy_pass      http://127.0.0.1:8191;
+        }   
+    }
