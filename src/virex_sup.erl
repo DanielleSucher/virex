@@ -46,7 +46,7 @@ init([]) ->
     {ok, Dispatch} = file:consult(filename:join([priv_dir(App),
                                                  "dispatch.conf"])),
     Port = case os:getenv("WEBMACHINE_PORT") of
-            false -> 8000;
+            false -> 8191;
             AnyPort -> AnyPort
           end,
     WebConfig = [
