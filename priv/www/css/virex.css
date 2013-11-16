@@ -95,6 +95,7 @@ body {
 
 .match {
   padding-left: 5px;
+  overflow: scroll;
 }
 
 input, textarea, .match, #tips {
