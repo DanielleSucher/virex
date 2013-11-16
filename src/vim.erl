@@ -8,9 +8,13 @@
 -include_lib("eunit/include/eunit.hrl").
 -endif.
 
--define(SUBSTITUTION, "/<span class='highlight'>\\0<\\/span>" ++
-  "VRMG<br>\\&#92;1: \\1<br>\\&#92;2: \\2<br>\\&#92;3: \\3VRMG/g\"").
+-define(SUBSTITUTION, "/VIREXSTARTH\\0VIREXSTOPH" ++
+  "VRMGVIREXBR1: \\1VIREXBR2: \\2VIREXBR3: \\3VRMG/g\"").
 
+-define(HTMLFORMAT, " -c \"%s/<\\|>\\|&\\|VIREXSTARTH\\|" ++
+  "VIREXSTOPH\\|VIREXBR/\\={'&' : '&amp;', '<' : '&lt;', '>' : '&gt;', " ++
+  "'VIREXSTARTH' : '<span class=''highlight''>', 'VIREXSTOPH' : \\\"<\\/" ++
+  "span>\\\", 'VIREXBR' : '<br>&#92;'}[submatch(0)]/g \"").
 
 handle_regex(Text, Pattern) ->
   Filename = mktemp(),
@@ -29,7 +33,7 @@ substitution_command(Filename, Pattern) ->
     rejected ->
       rejected;
     SafePattern ->
-      Substitute = " -c \"%s/" ++ SafePattern ++ ?SUBSTITUTION,
+      Substitute = " -c \"%s/" ++ SafePattern ++ ?SUBSTITUTION ++ ?HTMLFORMAT,
       {ok, "vim -X " ++ Filename ++ Substitute ++ " -c \"x\""}
   end.
 
