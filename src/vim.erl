@@ -4,10 +4,6 @@
 -module(vim).
 -export([handle_regex/2]).
 
--ifdef(TEST).
--include_lib("eunit/include/eunit.hrl").
--endif.
-
 -define(SUBSTITUTION, "/VIREXSTARTH\\0VIREXSTOPH" ++
   "VRMGVIREXBR1: \\1VIREXBR2: \\2VIREXBR3: \\3VRMG/g\"").
 
@@ -69,17 +65,3 @@ loop_until_vim_is_done(Filename, Port) ->
 
 mktemp() ->
   string:strip(os:cmd("mktemp -t virextmp.XXXXXXX"), both, $\n).
-
-
--ifdef(TEST).
-
-handle_regex_test() ->
-  Result = handle_regex("foo", "f"),
-  io:format("~s", [Result]),
-  ?assert(Result =:= <<"<span class='highlight'>f</span>VRMG<br>&#92;1: <br>&#92;2: <br>&#92;3: VRMGoo\n">>).
-
-handle_regex_redos_test() ->
-  Result = handle_regex("foo", "f\{999,99999}"),
-  ?assert(Result =:= <<"Your pattern has been rejected. Please email me with your use case.">>).
-
--endif.
