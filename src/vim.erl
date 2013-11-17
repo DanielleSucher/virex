@@ -37,12 +37,17 @@ substitution_command(Filename, Pattern) ->
 secure_pattern(Filename, Pattern) when erlang:length(Pattern) > 80 ->
   reject_pattern(Filename);
 secure_pattern(Filename, Pattern) ->
-  case re:run(Pattern, "\{-?[0-9]{3,}|[0-9]{3,}\\\\?\}|([^\\\\]|^)(\\\\\\\\)*/") of
-    {match, _} ->
-      reject_pattern(Filename);
-    nomatch ->
-      escape_pattern_quotes(Pattern)
+  case safe(Pattern) of
+    true ->
+      escape_pattern_quotes(Pattern);
+    false ->
+      reject_pattern(Filename)
   end.
+
+
+safe(Pattern) ->
+  DangerousRegex = "\{-?[0-9]{3,}|[0-9]{3,}\\\\?\}|([^\\\\]|^)(\\\\\\\\)*/",
+  re:run(Pattern, DangerousRegex) =:= nomatch.
 
 
 reject_pattern(Filename) ->
