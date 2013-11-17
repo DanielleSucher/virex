@@ -25,6 +25,25 @@ handle_regex(TestString, Pattern) ->
   end.
 
 
+loop_until_vim_is_done(Filename, Port) ->
+  receive
+    {Port, {data, _}} ->
+      loop_until_vim_is_done(Filename, Port);
+    {Port, {exit_status, 0}} ->
+      {ok, VimResult} = file:read_file(Filename),
+      file:delete(Filename),
+      VimResult;
+    _ ->
+      error
+  end.
+
+
+create_test_file(TestString) ->
+  Filename = mktemp(),
+  file:write_file(Filename, TestString),
+  Filename.
+
+
 substitution_command(Filename, Pattern) ->
   Substitute = " -c \"%s/" ++ Pattern ++ ?SUBSTITUTION ++ ?HTMLFORMAT,
   "vim -X " ++ Filename ++ Substitute ++ " -c \"x\"".
@@ -50,23 +69,5 @@ escape_pattern_quotes(Pattern) ->
   re:replace(Pattern, "\"", "\\\\\\\"", [global, {return, list}]).
 
 
-loop_until_vim_is_done(Filename, Port) ->
-  receive
-    {Port, {data, _}} ->
-      loop_until_vim_is_done(Filename, Port);
-    {Port, {exit_status, 0}} ->
-      {ok, VimResult} = file:read_file(Filename),
-      file:delete(Filename),
-      VimResult;
-    _ ->
-      error
-  end.
-
-
 mktemp() ->
   string:strip(os:cmd("mktemp -t virextmp.XXXXXXX"), both, $\n).
-
-create_test_file(TestString) ->
-  Filename = mktemp(),
-  file:write_file(Filename, TestString),
-  Filename.
