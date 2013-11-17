@@ -12,47 +12,38 @@
   "'VIREXSTARTH' : '<span class=''highlight''>', 'VIREXSTOPH' : \\\"<\\/" ++
   "span>\\\", 'VIREXBR' : '<br>&#92;'}[submatch(0)]/g \"").
 
-handle_regex(Text, Pattern) ->
-  Filename = mktemp(),
-  file:write_file(Filename, Text),
-  case substitution_command(Filename, Pattern) of
+
+handle_regex(TestString, Pattern) ->
+  case secure_pattern(Pattern) of
     rejected ->
       <<"Your pattern has been rejected. Please email me with your use case.">>;
-    {ok, VimCommand} ->
+    SafePattern ->
+      Filename = create_test_file(TestString),
+      VimCommand = substitution_command(Filename, SafePattern),
       Port = open_port({spawn, VimCommand}, [exit_status, stderr_to_stdout]),
       loop_until_vim_is_done(Filename, Port)
   end.
 
 
 substitution_command(Filename, Pattern) ->
-  case secure_pattern(Filename, Pattern) of
-    rejected ->
-      rejected;
-    SafePattern ->
-      Substitute = " -c \"%s/" ++ SafePattern ++ ?SUBSTITUTION ++ ?HTMLFORMAT,
-      {ok, "vim -X " ++ Filename ++ Substitute ++ " -c \"x\""}
-  end.
+  Substitute = " -c \"%s/" ++ Pattern ++ ?SUBSTITUTION ++ ?HTMLFORMAT,
+  "vim -X " ++ Filename ++ Substitute ++ " -c \"x\"".
 
 
-secure_pattern(Filename, Pattern) when erlang:length(Pattern) > 80 ->
-  reject_pattern(Filename);
-secure_pattern(Filename, Pattern) ->
+secure_pattern(Pattern) ->
   case safe(Pattern) of
     true ->
       escape_pattern_quotes(Pattern);
     false ->
-      reject_pattern(Filename)
+      rejected
   end.
 
 
+safe(Pattern) when erlang:length(Pattern) > 80 ->
+  false;
 safe(Pattern) ->
   DangerousRegex = "\{-?[0-9]{3,}|[0-9]{3,}\\\\?\}|([^\\\\]|^)(\\\\\\\\)*/",
   re:run(Pattern, DangerousRegex) =:= nomatch.
-
-
-reject_pattern(Filename) ->
-  file:delete(Filename),
-  rejected.
 
 
 escape_pattern_quotes(Pattern) ->
@@ -64,9 +55,9 @@ loop_until_vim_is_done(Filename, Port) ->
     {Port, {data, _}} ->
       loop_until_vim_is_done(Filename, Port);
     {Port, {exit_status, 0}} ->
-      {ok, Highlighted} = file:read_file(Filename),
+      {ok, VimResult} = file:read_file(Filename),
       file:delete(Filename),
-      Highlighted;
+      VimResult;
     _ ->
       error
   end.
@@ -74,3 +65,8 @@ loop_until_vim_is_done(Filename, Port) ->
 
 mktemp() ->
   string:strip(os:cmd("mktemp -t virextmp.XXXXXXX"), both, $\n).
+
+create_test_file(TestString) ->
+  Filename = mktemp(),
+  file:write_file(Filename, TestString),
+  Filename.
