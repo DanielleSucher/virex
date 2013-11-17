@@ -82,20 +82,29 @@ body {
   width: 417px;
 }
 
-#tips {
-  height: 300px;
-  width: 540px;
+#match_result pre {
+  margin-top: 0px;
 }
 
 #match_groups {
   height: 94px;
   width: 417px;
   vertical-align: bottom;
+  overflow-y: scroll;
+}
+
+#match_groups pre {
+  margin-top: -13px;
 }
 
 .match {
   padding-left: 5px;
   overflow: scroll;
+}
+
+#tips {
+  height: 300px;
+  width: 540px;
 }
 
 input, textarea, .match, #tips {
