@@ -41,13 +41,17 @@ secure_pattern(Filename, Pattern) ->
     {match, _} ->
       reject_pattern(Filename);
     nomatch ->
-      re:replace(Pattern, "\"", "\\\\\\\"", [global, {return, list}])
+      escape_pattern_quotes(Pattern)
   end.
 
 
 reject_pattern(Filename) ->
   file:delete(Filename),
   rejected.
+
+
+escape_pattern_quotes(Pattern) ->
+  re:replace(Pattern, "\"", "\\\\\\\"", [global, {return, list}]).
 
 
 loop_until_vim_is_done(Filename, Port) ->

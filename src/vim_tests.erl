@@ -9,6 +9,10 @@ handle_regex_test() ->
   Result = vim:handle_regex("foo", "f"),
   ?assert(Result =:= <<"<span class='highlight'>f</span>VRMG<br>&#92;1: <br>&#92;2: <br>&#92;3: VRMGoo\n">>).
 
+handle_regex_with_quotes_test() ->
+  Result = vim:handle_regex("f\"oo", "f\""),
+  ?assert(Result =:= <<"<span class='highlight'>f\"</span>VRMG<br>&#92;1: <br>&#92;2: <br>&#92;3: VRMGoo\n">>).
+
 handle_regex_redos_test() ->
   Result = vim:handle_regex("foo", "f\{999,99999}"),
   ?assert(Result =:= <<"Your pattern has been rejected. Please email me with your use case.">>).
