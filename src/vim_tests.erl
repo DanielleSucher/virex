@@ -7,11 +7,15 @@
 
 handle_regex_test() ->
   Result = vim:handle_regex("foo", "f"),
-  ?assert(Result =:= <<"<span class='highlight'>f</span>VRMG<br>&#92;1: <br>&#92;2: <br>&#92;3: VRMGoo\n">>).
+  ?assert(Result =:= <<"<span class='highlight'>f</span>oo\n">>).
 
 handle_regex_with_quotes_test() ->
   Result = vim:handle_regex("f\"oo", "f\""),
-  ?assert(Result =:= <<"<span class='highlight'>f\"</span>VRMG<br>&#92;1: <br>&#92;2: <br>&#92;3: VRMGoo\n">>).
+  ?assert(Result =:= <<"<span class='highlight'>f\"</span>oo\n">>).
+
+handle_regex_with_parens_test() ->
+  Result = vim:handle_regex("foo", "\\(f\\)"),
+  ?assert(Result =:= <<"<span class='highlight'>f</span>VRMG<br>&#92;1: f<br>&#92;2: <br>&#92;3: VRMGoo\n">>).
 
 handle_regex_redos_test() ->
   Result = vim:handle_regex("foo", "f\{999,99999}"),

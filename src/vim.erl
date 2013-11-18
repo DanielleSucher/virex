@@ -4,8 +4,9 @@
 -module(vim).
 -export([handle_regex/2]).
 
--define(SUBSTITUTION, "/VIREXSTARTH\\0VIREXSTOPH" ++
-  "VRMGVIREXBR1: \\1VIREXBR2: \\2VIREXBR3: \\3VRMG/g\"").
+-define(SUBSTITUTION, "/VIREXSTARTH\\0VIREXSTOPH").
+
+-define(GROUP_SUBSTITUTION, "VRMGVIREXBR1: \\1VIREXBR2: \\2VIREXBR3: \\3VRMG").
 
 -define(HTMLFORMAT, " -c \"%s/<\\|>\\|&\\|VIREXSTARTH\\|" ++
   "VIREXSTOPH\\|VIREXBR/\\={'&' : '&amp;', '<' : '&lt;', '>' : '&gt;', " ++
@@ -45,8 +46,16 @@ create_test_file(TestString) ->
 
 
 substitution_command(Filename, Pattern) ->
-  Substitute = " -c \"%s/" ++ Pattern ++ ?SUBSTITUTION ++ ?HTMLFORMAT,
+  Replacement = replacement_command(Pattern),
+  Substitute = " -c \"%s/" ++ Pattern ++ Replacement ++ "/g\"" ++ ?HTMLFORMAT,
   "vim -X " ++ Filename ++ Substitute ++ " -c \"x\"".
+
+
+replacement_command(Pattern) ->
+  case re:run(Pattern, "\\(.*\\)") of
+    {match, _} -> ?SUBSTITUTION ++ ?GROUP_SUBSTITUTION;
+    nomatch -> ?SUBSTITUTION
+  end.
 
 
 secure_pattern(Pattern) ->
