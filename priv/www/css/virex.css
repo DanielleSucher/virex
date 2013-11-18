@@ -104,7 +104,39 @@ body {
 
 #tips {
   height: 300px;
-  width: 540px;
+  width: 960px;
+  padding-top: 20px;
+  padding-right: 20px;
+  margin-left: -25px;
+  margin-bottom: 20px;
+  line-height: 200%;
+  -moz-column-count:3; /* Firefox */
+  -webkit-column-count:3; /* Safari and Chrome */
+  column-count:3;
+}
+
+.center {
+  float: none;
+  margin: auto;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 15px;
+  margin-top: 0px;
+}
+
+li span:first-child {
+  float: left;
+  text-align: left;
+  width: 60px;
+}
+
+li span:last-child {
+  float: right;
+  text-align: left;
+  width: 230px;
+  font-style: italic;
 }
 
 input, textarea, .match, #tips {
