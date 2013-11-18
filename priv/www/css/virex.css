@@ -130,6 +130,7 @@ li span:first-child {
   float: left;
   text-align: left;
   width: 60px;
+  text-align: center;
 }
 
 li span:last-child {
@@ -143,6 +144,10 @@ input, textarea, .match, #tips {
   border-style: solid;
   border-width: 1px;
   border-color: black;
+}
+
+input, textarea, .match {
+  font-family: courier;
 }
 
 h1, h3, .slash, #footer {
