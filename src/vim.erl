@@ -17,7 +17,7 @@
 handle_regex(TestString, Pattern) ->
   case secure_pattern(Pattern) of
     rejected ->
-      <<"Your pattern has been rejected. Please email me with your use case.">>;
+      {"Your pattern has been rejected. Please email me with your use case.", ""};
     SafePattern ->
       Filename = create_test_file(TestString),
       VimCommand = substitution_command(Filename, SafePattern),
@@ -33,7 +33,7 @@ loop_until_vim_is_done(Filename, Port) ->
     {Port, {exit_status, 0}} ->
       {ok, VimResult} = file:read_file(Filename),
       file:delete(Filename),
-      VimResult;
+      format(VimResult);
     _ ->
       error
   end.
@@ -76,6 +76,22 @@ safe(Pattern) ->
 
 escape_pattern_quotes(Pattern) ->
   re:replace(Pattern, "\"", "\\\\\\\"", [global, {return, list}]).
+
+
+format(VimResult) ->
+  Tokens = string:tokens(binary_to_list(VimResult), "VRMG"),
+  case Tokens of
+    [_|[]] ->
+      {string:join(Tokens, ""), ""};
+    _ ->
+      split_highlighted_and_groups(Tokens)
+  end.
+
+
+split_highlighted_and_groups(Tokens) ->
+  IsMatchGroup = fun([A,B|_]) -> [A] =:= "<" andalso B =:= $b; (_) -> false end,
+  {Groups, Match} = lists:partition(IsMatchGroup, Tokens),
+  {string:join(Match, ""), string:join(Groups, "<br>")}.
 
 
 mktemp() ->
