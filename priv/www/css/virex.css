@@ -62,6 +62,8 @@ body {
 
 .slash {
   width: 60px;
+  font-weight: bold;
+  font-size: 125%;
 }
 
 .highlight {
@@ -75,6 +77,25 @@ body {
   display: block;
   overflow: hidden;
   visibility: hidden;
+}
+
+.logo {
+  padding-bottom: 0.25em;
+}
+
+.logo h1 {
+  font: 150% bold "Futura", "sans-serif";
+  color: #aa0000;
+  text-align: center;
+}
+
+.logo h1 #rex {
+  zfont-size: 90%;
+  color: #0000aa;
+}
+
+.logo h2 {
+  text-align: center;
 }
 
 #match_result {
@@ -126,18 +147,19 @@ ul {
   margin-top: 0px;
 }
 
-li span:first-child {
+.term {
   float: left;
   text-align: left;
   width: 60px;
   text-align: center;
 }
 
-li span:last-child {
+.def {
   float: right;
   text-align: left;
   width: 230px;
   font-style: italic;
+  color: #666677;
 }
 
 input, textarea, .match, #tips {

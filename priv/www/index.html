@@ -9,7 +9,10 @@
   <body>
     <div id="main_container">
       <div class="grid_12">
-        <h1>a Vim Regular Expressions playground</h1>
+        <div class='logo'>
+          <h1>/&thinsp;vi<span id="rex">[RE]</span>&thinsp;/&thinsp;x</h1>
+          <h2>a tool for exploring regular expressions in vim</h2>
+        </div>
         <span class="slash prefix_1 pattern_offset">/</span>
         <input type="text" id="regex" placeholder="Your regular expression" data-behavior="submit-regex-query" maxlength="80">
         <span class="slash">/g</span>
@@ -37,39 +40,39 @@
         </div>
         <div id="tips" class="center">
           <ul>
-            <li><span>[abc]</span><span>A single character: a, b, or c</span>
-            <li><span>[^abc]</span><span>Any character except: a, b, or c</span>
-            <li><span>[a-zA-Z]</span><span>Any single letter</span>
-            <li><span>[:alnum:]</span><span>Any single letter or digit</span>
-            <li><span>[:punct:]</span><span>Any single punctuation character</span>
-            <li><span>\_^</span><span>Start of line</span>
-            <li><span>\_$</span><span>End of line</span>
-            <li><span>.</span> <span>Any single character</span>
-            <li><span>\.</span> <span>Literal dot</span>
-            <li><span>\s</span><span>whitespace character</span>
-            <li><span>\S</span><span>non-whitespace character</span>
-            <li><span>\d</span><span>digit</span>
-            <li><span>\D</span><span>non-digit</span>
-            <li><span>\w</span><span>word character</span>
-            <li><span>\W</span><span>non-word character</span>
-            <li><span>\&lt;</span><span>left word boundary</span>
-            <li><span>\&gt;</span><span>right word boundary</span>
-            <li><span>\(...\)</span><span>Capture everything enclosed</span>
-            <li><span>a\|b</span><span>a or b</span>
-            <li><span>a\?</span><span>Zero or one of a</span>
-            <li><span>a*</span><span>Zero or more of a</span>
-            <li><span>a\+</span><span>One or more of a</span>
-            <li><span>\{3}</span><span>Exactly 3 of a</span>
-            <li><span>\{3,}</span><span>3 or more of a</span>
-            <li><span>\{3,6}</span><span>Between 3 and 6 of a</span>
-            <li><span>r\%[ead]</span><span>Longest available of: r, re, rea, read</span>
-            <li><span>\(.\)a\1</span><span>'yay', 'dad', 'xax', &c</span>
+            <li><span class="term">[abc]</span><span class="def">A single character: a, b, or c</span>
+            <li><span class="term">[^abc]</span><span class="def">Any character except: a, b, or c</span>
+            <li><span class="term">[a-zA-Z]</span><span class="def">Any single letter</span>
+            <li><span class="term">[:alnum:]</span><span class="def">Any single letter or digit</span>
+            <li><span class="term">[:punct:]</span><span class="def">Any single punctuation character</span>
+            <li><span class="term">\_^</span><span class="def">Start of line</span>
+            <li><span class="term">\_$</span><span class="def">End of line</span>
+            <li><span class="term">.</span> <span class="def">Any single character</span>
+            <li><span class="term">\.</span> <span class="def">Literal dot</span>
+            <li><span class="term">\s</span><span class="def">whitespace character</span>
+            <li><span class="term">\S</span><span class="def">non-whitespace character</span>
+            <li><span class="term">\d</span><span class="def">digit</span>
+            <li><span class="term">\D</span><span class="def">non-digit</span>
+            <li><span class="term">\w</span><span class="def">word character</span>
+            <li><span class="term">\W</span><span class="def">non-word character</span>
+            <li><span class="term">\&lt;</span><span class="def">left word boundary</span>
+            <li><span class="term">\&gt;</span><span class="def">right word boundary</span>
+            <li><span class="term">\(...\)</span><span class="def">Capture everything enclosed</span>
+            <li><span class="term">a\|b</span><span class="def">a or b</span>
+            <li><span class="term">a\?</span><span class="def">Zero or one of a</span>
+            <li><span class="term">a*</span><span class="def">Zero or more of a</span>
+            <li><span class="term">a\+</span><span class="def">One or more of a</span>
+            <li><span class="term">\{3}</span><span class="def">Exactly 3 of a</span>
+            <li><span class="term">\{3,}</span><span class="def">3 or more of a</span>
+            <li><span class="term">\{3,6}</span><span class="def">Between 3 and 6 of a</span>
+            <li><span class="term">r\%[ead]</span><span class="def">Longest available of: r, re, rea, read</span>
+            <li><span class="term">\(.\)a\1</span><span class="def">'yay', 'dad', 'xax', &c</span>
           </ul>
         </div>
         <div class="grid_9 center">
           For detailed documentation on vim's regex, check out <a href="http://vimregex.com/">vimregex.com</a>, the <a href="http://vimdoc.sourceforge.net/htmldoc/pattern.html">vim docs</a>, and the <a href="http://vim.wikia.com/wiki/Special:Search?search=regular+expressions&fulltext=Search&ns0=1&ns14=1">vim tips wiki</a>.
           <br /><br />
-          Made by <a href="http://www.daniellesucher.com/">Danielle Sucher</a> (<a href="https://twitter.com/daniellesucher">@DanielleSucher</a>), inspired by <a href="http://rubular.com/">Rubular</a>. Source code <a href="https://github.com/DanielleSucher/virex">available here</a>.
+          Made by <a href="http://www.daniellesucher.com/">Danielle Sucher</a> (<a href="https://twitter.com/daniellesucher">@DanielleSucher</a>), inspired by <a href="http://rubular.com/">Rubular</a>. Logo by <a href="http://alexfeinman.net/">Alex Feinman</a>. Source code <a href="https://github.com/DanielleSucher/virex">available here</a>.
         </div>
         <div class="clear vertical-spacer"><br /></div>
       </div>
