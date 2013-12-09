@@ -8,6 +8,10 @@ body {
   width: 960px;
 }
 
+textarea {
+  max-width: 100%
+}
+
 .grid_6,
 .grid_9,
 .grid_12 {
