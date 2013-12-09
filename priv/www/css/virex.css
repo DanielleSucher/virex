@@ -1,5 +1,6 @@
 body {
   min-width: 960px;
+  width: 100% !important;
 }
 
 #main_container {
@@ -126,10 +127,10 @@ textarea {
 
 #tips {
   height: 300px;
-  width: 960px;
+  width: 990px;
   padding-top: 20px;
-  padding-right: 20px;
-  margin-left: -28px;
+  padding-right: 10px;
+  margin-left: -38px;
   margin-bottom: 20px;
   line-height: 200%;
   -moz-column-count:3; /* Firefox */
@@ -158,7 +159,7 @@ ul {
 .def {
   float: right;
   text-align: left;
-  width: 233px;
+  width: 240px;
   font-style: italic;
   color: #666677;
 }

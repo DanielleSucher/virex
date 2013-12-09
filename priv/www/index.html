@@ -40,33 +40,114 @@
         </div>
         <div id="tips" class="center">
           <ul>
-            <li><span class="term">[abc]</span><span class="def">A single character: a, b, or c</span>
-            <li><span class="term">[^abc]</span><span class="def">Any character except: a, b, or c</span>
-            <li><span class="term">[a-zA-Z]</span><span class="def">Any single letter</span>
-            <li><span class="term">[:alnum:]</span><span class="def">Any single letter or digit</span>
-            <li><span class="term">[:punct:]</span><span class="def">Any single punctuation character</span>
-            <li><span class="term">\_^</span><span class="def">Start of line</span>
-            <li><span class="term">\_$</span><span class="def">End of line</span>
-            <li><span class="term">.</span> <span class="def">Any single character</span>
-            <li><span class="term">\.</span> <span class="def">Literal dot</span>
-            <li><span class="term">\s</span><span class="def">whitespace character</span>
-            <li><span class="term">\S</span><span class="def">non-whitespace character</span>
-            <li><span class="term">\d</span><span class="def">digit</span>
-            <li><span class="term">\D</span><span class="def">non-digit</span>
-            <li><span class="term">\w</span><span class="def">word character</span>
-            <li><span class="term">\W</span><span class="def">non-word character</span>
-            <li><span class="term">\&lt;</span><span class="def">left word boundary</span>
-            <li><span class="term">\&gt;</span><span class="def">right word boundary</span>
-            <li><span class="term">\(...\)</span><span class="def">Capture everything enclosed</span>
-            <li><span class="term">a\|b</span><span class="def">a or b</span>
-            <li><span class="term">a\?</span><span class="def">Zero or one of a</span>
-            <li><span class="term">a*</span><span class="def">Zero or more of a</span>
-            <li><span class="term">a\+</span><span class="def">One or more of a</span>
-            <li><span class="term">\{3}</span><span class="def">Exactly 3 of a</span>
-            <li><span class="term">\{3,}</span><span class="def">3 or more of a</span>
-            <li><span class="term">\{3,6}</span><span class="def">Between 3 and 6 of a</span>
-            <li><span class="term">r\%[ead]</span><span class="def">Longest available of: r, re, rea, read</span>
-            <li><span class="term">\(.\)a\1</span><span class="def">'yay', 'dad', 'xax', &c</span>
+            <li>
+              <span class="term">[abc]</span>
+              <span class="def">A single character: a, b, or c</span>
+            </li>
+            <li>
+              <span class="term">[^abc]</span>
+              <span class="def">Any character except: a, b, or c</span>
+            </li>
+            <li>
+              <span class="term">[a-zA-Z]</span>
+              <span class="def">Any single letter</span>
+            </li>
+            <li>
+              <span class="term">[:alnum:]</span>
+              <span class="def">Any single letter or digit</span>
+            </li>
+            <li>
+              <span class="term">[:punct:]</span>
+              <span class="def">Any single punctuation character</span>
+            </li>
+            <li>
+              <span class="term">\_^</span>
+              <span class="def">Start of line</span>
+            </li>
+            <li>
+              <span class="term">\_$</span>
+              <span class="def">End of line</span>
+            </li>
+            <li>
+              <span class="term">.</span>
+              <span class="def">Any single character</span>
+            </li>
+            <li>
+              <span class="term">\.</span>
+              <span class="def">Literal dot</span>
+            </li>
+            <li>
+              <span class="term">\s</span>
+              <span class="def">whitespace character</span>
+            </li>
+            <li>
+              <span class="term">\S</span>
+              <span class="def">non-whitespace character</span>
+            </li>
+            <li>
+              <span class="term">\d</span>
+              <span class="def">digit</span>
+            </li>
+            <li>
+              <span class="term">\D</span>
+              <span class="def">non-digit</span>
+            </li>
+            <li>
+              <span class="term">\w</span>
+              <span class="def">word character</span>
+            </li>
+            <li>
+              <span class="term">\W</span>
+              <span class="def">non-word character</span>
+            </li>
+            <li>
+              <span class="term">\&lt;</span>
+              <span class="def">left word boundary</span>
+            </li>
+            <li>
+              <span class="term">\&gt;</span>
+              <span class="def">right word boundary</span>
+            </li>
+            <li>
+              <span class="term">\(...\)</span>
+              <span class="def">Capture everything enclosed</span>
+            </li>
+            <li>
+              <span class="term">a\|b</span>
+              <span class="def">a or b</span>
+            </li>
+            <li>
+              <span class="term">a\?</span>
+              <span class="def">Zero or one of a</span>
+            </li>
+            <li>
+              <span class="term">a*</span>
+              <span class="def">Zero or more of a</span>
+            </li>
+            <li>
+              <span class="term">a\+</span>
+              <span class="def">One or more of a</span>
+            </li>
+            <li>
+              <span class="term">\{3}</span>
+              <span class="def">Exactly 3 of a</span>
+            </li>
+            <li>
+              <span class="term">\{3,}</span>
+              <span class="def">3 or more of a</span>
+            </li>
+            <li>
+              <span class="term">\{3,6}</span>
+              <span class="def">Between 3 and 6 of a</span>
+            </li>
+            <li>
+              <span class="term">r\%[ead]</span>
+              <span class="def">Longest available of: r, re, rea, read</span>
+            </li>
+            <li>
+              <span class="term">\(.\)a\1</span>
+              <span class="def">'yay', 'dad', 'xax', &c</span>
+            </li>
           </ul>
         </div>
         <div class="grid_9 center">
