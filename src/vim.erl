@@ -8,10 +8,10 @@
 
 -define(GROUP_SUBSTITUTION, "VRMGVIREXBR1: \\1VIREXBR2: \\2VIREXBR3: \\3VRMG").
 
--define(HTMLFORMAT, " -c \"%s/<\\|>\\|&\\|VIREXSTARTH\\|" ++
+-define(HTMLFORMAT, "%s/<\\|>\\|&\\|VIREXSTARTH\\|" ++
   "VIREXSTOPH\\|VIREXBR/\\={'&' : '&amp;', '<' : '&lt;', '>' : '&gt;', " ++
-  "'VIREXSTARTH' : '<span class=''highlight''>', 'VIREXSTOPH' : \\\"<\\/" ++
-  "span>\\\", 'VIREXBR' : '<br>&#92;'}[submatch(0)]/g \"").
+  "'VIREXSTARTH' : '<span class=''highlight''>', 'VIREXSTOPH' : \"<\\/" ++
+  "span>\", 'VIREXBR' : '<br>&#92;'}[submatch(0)]/g").
 
 
 handle_regex(TestString, Pattern) ->
@@ -21,7 +21,8 @@ handle_regex(TestString, Pattern) ->
     SafePattern ->
       Filename = create_test_file(TestString),
       VimCommand = substitution_command(Filename, SafePattern),
-      Port = open_port({spawn, VimCommand}, [exit_status, stderr_to_stdout]),
+      Port = open_port({spawn_executable, os:find_executable("vim")},
+                       [{args, VimCommand}, exit_status, stderr_to_stdout]),
       loop_until_vim_is_done(Filename, Port)
   end.
 
@@ -47,8 +48,8 @@ create_test_file(TestString) ->
 
 substitution_command(Filename, Pattern) ->
   Replacement = replacement_command(Pattern),
-  Substitute = " -c \"%s/" ++ Pattern ++ Replacement ++ "/g\"" ++ ?HTMLFORMAT,
-  "vim -X " ++ Filename ++ Substitute ++ " -c \"x\"".
+  Substitute = "%s/" ++ Pattern ++ Replacement ++ "/g",
+  ["-X", Filename, "-c", Substitute, "-c", ?HTMLFORMAT, "-c", "x"].
 
 
 replacement_command(Pattern) ->
