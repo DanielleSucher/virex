@@ -4,14 +4,7 @@
 -module(vim).
 -export([handle_regex/2]).
 
--define(SUBSTITUTION, "/VIREXSTARTH\\0VIREXSTOPH").
-
--define(GROUP_SUBSTITUTION, "VRMGVIREXBR1: \\1VIREXBR2: \\2VIREXBR3: \\3VRMG").
-
--define(HTMLFORMAT, "%s/<\\|>\\|&\\|VIREXSTARTH\\|" ++
-  "VIREXSTOPH\\|VIREXBR/\\={'&' : '&amp;', '<' : '&lt;', '>' : '&gt;', " ++
-  "'VIREXSTARTH' : '<span class=''highlight''>', 'VIREXSTOPH' : \"<\\/" ++
-  "span>\", 'VIREXBR' : '<br>&#92;'}[submatch(0)]/g").
+-include("vim.hrl").
 
 
 handle_regex(TestString, Pattern) ->
@@ -48,7 +41,7 @@ create_test_file(TestString) ->
 
 substitution_command(Filename, Pattern) ->
   Replacement = replacement_command(Pattern),
-  Substitute = "%s/" ++ Pattern ++ Replacement ++ "/g",
+  Substitute = "%s/" ++ Pattern ++ "/" ++  Replacement ++ "/g",
   ["-X", Filename, "-c", Substitute, "-c", ?HTMLFORMAT, "-c", "x"].
 
 
