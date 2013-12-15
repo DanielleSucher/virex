@@ -204,3 +204,7 @@ button {
 #update_regex {
   margin-top: 27px;
 }
+
+#slash_warning {
+  color: rgba(255, 128, 128, 1)
+}

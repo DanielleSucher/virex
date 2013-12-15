@@ -40,8 +40,9 @@ create_test_file(TestString) ->
 
 
 substitution_command(Filename, Pattern) ->
+  Delimiter = [1],
   Replacement = replacement_command(Pattern),
-  Substitute = "%s/" ++ Pattern ++ "/" ++  Replacement ++ "/g",
+  Substitute = "%s" ++ Delimiter ++ Pattern ++ Delimiter ++ Replacement ++ Delimiter ++ "g",
   ["-X", Filename, "-c", Substitute, "-c", ?HTMLFORMAT, "-c", "x"].
 
 
@@ -64,7 +65,7 @@ secure_pattern(Pattern) ->
 safe(Pattern) when erlang:length(Pattern) > 80 ->
   false;
 safe(Pattern) ->
-  DangerousRegex = "\{-?[0-9]{3,}|[0-9]{3,}\\\\?\}|([^\\\\]|^)(\\\\\\\\)*/",
+  DangerousRegex = "\{-?[0-9]{3,}|[0-9]{3,}\\\\?\}",
   re:run(Pattern, DangerousRegex) =:= nomatch.
 
 

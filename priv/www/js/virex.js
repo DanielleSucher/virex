@@ -17,4 +17,13 @@ $(document).ready(function() {
         });
     }
   });
+  $("#regex").keyup( function() {
+    regex = $('#regex').val();
+    warning_div = $('#slash_warning')
+    if (/(^|[^\\])(\\{2})*\//.test(regex)) {
+      warning_div.html("&nbsp;&nbsp;WARNING: This regex contains an unescaped /");
+    } else {
+      warning_div.html("<br />");
+    }
+  });
 });
